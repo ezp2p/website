@@ -1,0 +1,47 @@
+title: ezp2p
+description: Chat with no servers in the middle. Puddle, Pond and Levee.
+url: "https://www.ezp2p.org"
+baseurl: ""
+github: https://github.com/ezp2p
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+permalink: pretty
+
+# The top navigation, in order.
+nav:
+  - title: Puddle
+    url: /puddle/
+  - title: Pond
+    url: /pond/
+  - title: Levee
+    url: /levee/
+  - title: Wiki
+    url: /wiki/
+
+# The wiki's sections, in order. Each one is a folder in wiki/.
+wikis:
+  - id: puddle
+    title: Puddle
+    repo: ezp2p/puddle
+  - id: pond
+    title: Pond
+    repo: ezp2p/pond
+  - id: levee
+    title: Levee
+    repo: ezp2p/levee
+
+defaults:
+  - scope: { path: "" }
+    values: { layout: page }
+  - scope: { path: "wiki" }
+    values: { layout: wiki }
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .jekyll-cache

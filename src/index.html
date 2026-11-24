@@ -1,0 +1,39 @@
+---
+layout: default
+title: ezp2p
+---
+<div class="wrap">
+  <section class="hero">
+    <h1>Chat with no servers in the middle.</h1>
+    <p>ezp2p is a family of programs for talking to people directly. Your chats live on your own computer, your friends' live on theirs, and nothing sits between you that can read them.</p>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h2>Puddle</h2>
+      <p class="tag">Your own chat, on your own computer.</p>
+      <p>Puddle is the app you run. It keeps your identity, friends, chats and files, and talks straight to your friends' Puddles. Your phone connects back to it.</p>
+      <a class="more" href="{{ '/puddle/' | relative_url }}">About Puddle →</a>
+    </div>
+    <div class="card">
+      <h2>Pond</h2>
+      <p class="tag">A place for a community to gather.</p>
+      <p>A Pond is a community server, with channels and many members. Someone runs one and hands out invite links, and people join from their Puddle.</p>
+      <a class="more" href="{{ '/pond/' | relative_url }}">About Pond →</a>
+    </div>
+    <div class="card">
+      <h2>Levee</h2>
+      <p class="tag">A steady address for a Puddle. <span class="status">Design draft</span></p>
+      <p>A Levee is a relay for a Puddle that can't take connections from the internet. It gives the Puddle a fixed address and holds messages while it is offline, without being able to read them.</p>
+      <a class="more" href="{{ '/levee/' | relative_url }}">About Levee →</a>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2>How they fit together</h2>
+    <p>Two friends each run a Puddle. Once they've added each other, their Puddles hold a <strong>stream</strong>: a trusted, signed connection between the two. Messages, files and calls travel over it directly.</p>
+    <p>Ponds are where groups meet. A Puddle joins a Pond with an invite and keeps a copy of recent messages; the Pond keeps the rest. A Levee, once built, sits in front of a Puddle that can't open a port, so friends and Ponds can still reach it.</p>
+    <p>Everything they say to each other follows the <a href="https://github.com/ezp2p/protocol">Puddle Protocol</a>, written down once so each program can be built and upgraded on its own. Nothing is public: a request that fails any check gets the same answer as a path that doesn't exist.</p>
+    <p>Setting one up? The <a href="{{ '/wiki/' | relative_url }}">wiki</a> has the details.</p>
+  </section>
+</div>
