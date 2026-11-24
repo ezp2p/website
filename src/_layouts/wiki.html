@@ -1,0 +1,33 @@
+---
+layout: default
+---
+{%- assign parts = page.path | split: "/" -%}
+{%- assign section = parts[1] -%}
+{%- assign wiki = site.wikis | where: "id", section | first -%}
+<div class="wrap wiki">
+  <aside class="wiki-nav">
+    <p class="wiki-nav-title"><a href="{{ '/wiki/' | relative_url }}">Wiki</a></p>
+    {%- for w in site.wikis %}
+    {%- assign prefix = "wiki/" | append: w.id | append: "/" -%}
+    <p class="wiki-section{% if w.id == section %} current{% endif %}"><a href="{{ prefix | prepend: '/' | relative_url }}">{{ w.title }}</a></p>
+    {%- if w.id == section %}
+    {%- assign wiki_pages = site.pages | where_exp: "p", "p.path contains prefix" | sort: "nav_order" %}
+    <ul>
+      {%- for p in wiki_pages %}
+      {%- unless p.name == "index.md" %}
+      <li><a href="{{ p.url | relative_url }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.title }}</a></li>
+      {%- endunless %}
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- endfor %}
+  </aside>
+  <article class="prose">
+    {%- if wiki and page.name != "index.md" %}
+    <p class="crumbs"><a href="{{ '/wiki/' | relative_url }}">Wiki</a> / <a href="{{ '/wiki/' | append: wiki.id | append: '/' | relative_url }}">{{ wiki.title }}</a></p>
+    {%- endif %}
+    <h1>{{ page.title }}</h1>
+    {{ content }}
+    <p class="edit"><a href="https://github.com/ezp2p/website/edit/master/src/{{ page.path }}">Edit this page on GitHub</a></p>
+  </article>
+</div>
