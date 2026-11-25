@@ -9,7 +9,9 @@ image_alt: Two Puddles connected directly, with light passing between them.
 
 # Puddle
 
-<p class="lede">Your own chat, on your own computer, with no servers in between.</p>
+<p class="lede">
+    A true peer-to-peer chat application, with nothing in the middle.
+</p>
 
 Puddle is the app you run. It keeps everything that is yours (your identity, your friends, your chats and your files) on
 your own machine, and holds a port open so your friends' Puddles can reach it. You add friends directly, and chat over the

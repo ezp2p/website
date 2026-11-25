@@ -9,11 +9,23 @@ image_alt: Many Puddles joined to one Pond, with light passing through the hub.
 
 # Pond
 
-<p class="lede">A place for a community to gather, joined from your Puddle.</p>
+<p class="lede">
+    A place for a community to gather, joined from your Puddle.
+</p>
 
-Puddles are for talking privately with people you know. A **Pond** is the public side: a community server, like a
-Discord server, with text channels and many members. Someone runs a Pond, creates channels and gives out invite links.
-People join by pasting a link into their Puddle.
+Ponds are community servers which provide everything a server admin needs:
+
+- Text Channels
+- Voice Channels
+- Video Calls
+- Pages for information (instead of locked chat channels)
+- Events Calendar
+- Application Form (for esports teams and guilds)
+- Integrated Shop (with Stripe for selling stuff to fund your Pond)
+
+A **Pond** is the public side: a community server, like a Discord server, with 
+text channels and many members. Someone runs a Pond, creates channels and gives
+out invite links. People join by pasting a link into their Puddle.
 
 ## How it works
 
@@ -38,6 +50,60 @@ router with no ports open. It holds one request open for the Pond's events, so n
 as they happen. It keeps the newest 200 messages of each channel and asks the Pond for anything older.
 
 Every request your Puddle makes to a Pond is signed with your key, the same way it signs requests to friends.
+
+## Pond Channels
+
+Pond currently supports two types of channels; voice and text.
+
+A voice channel operates much like a Discord voice channel. It has an integrated 
+text channel and supports desktop sharing and video calls.
+
+## Pond Pages
+
+Pond supports markdown formatted pages that are displayed separately from 
+channels.
+
+Unlike other applications, these pages are not locked chat channels. These are 
+markdown pages where you can put server rules, server information or whatever 
+you feel you need a page for.
+
+Pages can also be used for role selection, so users can select their own roles.
+
+## Pond Events
+
+You can configure a community calendar on your Pond for scheduling events, such 
+as scrims or meetups.
+
+Calendars are not fully hashed out yet, but we'll eventually support in-Puddle 
+reminders for upcoming events, as well as an exportable webcal so that you can 
+add the calendar to your phone.
+
+## Pond Application Forms
+
+If you're running an esports team or WoW guild, you'll probably want to have a 
+form that users have to fill out before being granted access to the Pond.
+
+Users with the correct permissions can create an application form.
+
+Users trying to join your team can fill out the application form, and whoever 
+has the correct permissions can review and accept them in.
+
+Application forms are still highly WIP but they work to give entry to the Pond, 
+as well as to provide automated access to a role to give further permissions.
+
+## Pond Shop
+
+I know you scrolled past everything above for this.
+
+Pond has a built in shop front where you can configure products to sell. Right 
+now it's extremely basic; configure your Stripe code, then create some basic 
+products.
+
+Over time we'll introduce integrations so that you can sell physical and digital
+goods more efficiently.
+
+Because it's all self hosted, we can't actually take a slice of anything. So 
+it's all for you.
 
 ## Status
 
