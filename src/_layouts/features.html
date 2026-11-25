@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<article class="wrap roadmap">
+  <h1>{{ page.title }}</h1>
+  {%- if page.lede %}
+  <p class="lede">{{ page.lede }}</p>
+  {%- endif %}
+
+  <ul class="roadmap-legend">
+    {%- for s in page.statuses %}
+    <li><span class="badge badge-{{ s.id }}">{{ s.label }}</span></li>
+    {%- endfor %}
+  </ul>
+
+  {%- for group in page.groups %}
+  {%- assign done = group.features | where: "status", "done" | size %}
+  <section class="roadmap-group">
+    <h2>
+      {%- if group.url %}<a href="{{ group.url | relative_url }}">{{ group.title }}</a>{% else %}{{ group.title }}{% endif %}
+      <span class="roadmap-count">{{ done }} of {{ group.features.size }} done</span>
+    </h2>
+    <ul class="roadmap-list">
+      {%- for f in group.features %}
+      {%- assign status = page.statuses | where: "id", f.status | first %}
+      <li class="roadmap-item">
+        <span class="badge badge-{{ f.status }}">{% if status %}{{ status.label }}{% else %}{{ f.status }}{% endif %}</span>
+        <div>
+          <span class="roadmap-name">{{ f.name | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
+          {%- if f.notes %}
+          <span class="roadmap-notes">{{ f.notes | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
+          {%- endif %}
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+
+  {%- assign extra = content | strip %}
+  {%- if extra != "" %}
+  <div class="prose roadmap-footer">{{ content }}</div>
+  {%- endif %}
+</article>
