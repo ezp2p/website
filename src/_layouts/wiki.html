@@ -14,9 +14,23 @@ layout: default
     {%- assign wiki_pages = site.pages | where_exp: "p", "p.path contains prefix" | sort: "nav_order" %}
     <ul>
       {%- for p in wiki_pages %}
-      {%- unless p.name == "index.md" %}
+      {%- assign rel = p.path | remove_first: prefix -%}
+      {%- assign bits = rel | split: "/" -%}
+      {%- if bits.size == 1 and p.name != "index.md" %}
       <li><a href="{{ p.url | relative_url }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.title }}</a></li>
-      {%- endunless %}
+      {%- elsif bits.size == 2 and p.name == "index.md" %}
+      {%- assign sub = prefix | append: bits[0] | append: "/" -%}
+      <li><a href="{{ p.url | relative_url }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.title }}</a>
+        {%- if page.path contains sub %}
+        {%- assign sub_pages = site.pages | where_exp: "q", "q.path contains sub" | sort: "nav_order" %}
+        <ul>
+          {%- for q in sub_pages %}{% unless q.name == "index.md" %}
+          <li><a href="{{ q.url | relative_url }}"{% if q.url == page.url %} aria-current="page"{% endif %}>{{ q.title }}</a></li>
+          {%- endunless %}{% endfor %}
+        </ul>
+        {%- endif %}
+      </li>
+      {%- endif %}
       {%- endfor %}
     </ul>
     {%- endif %}
@@ -24,7 +38,8 @@ layout: default
   </aside>
   <article class="prose">
     {%- if wiki and page.name != "index.md" %}
-    <p class="crumbs"><a href="{{ '/wiki/' | relative_url }}">Wiki</a> / <a href="{{ '/wiki/' | append: wiki.id | append: '/' | relative_url }}">{{ wiki.title }}</a></p>
+    <p class="crumbs"><a href="{{ '/wiki/' | relative_url }}">Wiki</a> / <a href="{{ '/wiki/' | append: wiki.id | append: '/' | relative_url }}">{{ wiki.title }}</a>
+    {%- if parts.size > 3 and parts[3] != "index.md" %}{% assign subidx = "wiki/" | append: section | append: "/" | append: parts[2] | append: "/index.md" %}{% assign sp = site.pages | where: "path", subidx | first %}{% if sp %} / <a href="{{ sp.url | relative_url }}">{{ sp.title }}</a>{% endif %}{% endif %}</p>
     {%- endif %}
     <h1>{{ page.title }}</h1>
     {{ content }}

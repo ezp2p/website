@@ -31,6 +31,9 @@ wikis:
   - id: about
     title: About ezp2p
     repo: ezp2p/website
+  - id: decisions
+    title: Decisions
+    repo: ezp2p/website
   - id: puddle
     title: Puddle
     repo: ezp2p/puddle
@@ -43,6 +46,9 @@ wikis:
   - id: levee
     title: Levee
     repo: ezp2p/levee
+  - id: protocol
+    title: Protocol
+    repo: ezp2p/protocol
 
 defaults:
   - scope: { path: "" }

@@ -3,7 +3,7 @@ title: Wiki
 layout: wiki
 ---
 
-How to install, run and use each part of ezp2p.
+How to install, run and use each part of ezp2p, how each part is designed, and the decisions made along the way.
 
 {% for w in site.wikis -%}
 - **[{{ w.title }}]({{ '/wiki/' | append: w.id | append: '/' | relative_url }})**
