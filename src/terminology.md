@@ -64,7 +64,9 @@ sections:
         see: [Device, Pairing]
         spec: 04-devices
       - term: Drip
-        definition: Peer-to-peer social media built on the same identities. Not designed yet.
+        definition: >-
+          Peer-to-peer social media, built like Puddle. You host your own feed, and the people you've accepted pull it
+          down to theirs over a stream. Coming soon. [More about Drip](/drip/).
         spec: 07-drip
 
   - title: Identity and keys
