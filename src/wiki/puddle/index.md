@@ -8,4 +8,8 @@ nav_order: 0
 - [Installation]({{ '/wiki/puddle/installation/' | relative_url }}): getting the dev build, running it on your computer
   at home with a port forward, or on a server with Docker.
 
-The design notes and API specs are in the [puddle repository](https://github.com/ezp2p/puddle/tree/dev) (`docs/`, `api/`).
+- [Docker]({{ '/wiki/puddle/docker/' | relative_url }}): running `puddled` in a container, and testing with two Puddles.
+- [Builds and releases]({{ '/wiki/puddle/releases/' | relative_url }}): what CI builds, what is published, and when.
+- [Design]({{ '/wiki/puddle/design/' | relative_url }}): the design documents the code follows.
+
+The API specs are in the [puddle repository](https://github.com/ezp2p/puddle/tree/dev) (`api/`).
