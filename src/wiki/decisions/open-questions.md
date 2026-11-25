@@ -48,6 +48,7 @@ questions" and "Not decided" sections of the design documents. The live list is
 - **The signature scheme for requests between Puddles:** settled in [Protocol: Signatures](/wiki/protocol/signatures/).
 - **Whether a block hides someone's messages in groups, or makes you leave:** hides them, and you stay
   ([Group chats](/wiki/decisions/groups/#what-does-blocking-do-in-a-group)).
-- **Who may remove someone from a group:** proposed in ezp2p/puddle#69.
+- **Who may remove someone from a group:** whoever invited them, or a majority vote
+  ([Group chats](/wiki/decisions/groups/#can-anyone-remove-a-member)).
 - **Encrypting message bodies end to end:** done on the wire by sealing ([Streams](/wiki/decisions/streams/)).
   Encrypting data at rest is ezp2p/puddle#42, which also covers protecting the key file.

@@ -47,9 +47,28 @@ answer) gives its Ed25519 public key as `key` (hex), whose SHA-256 in base32 is 
 - **No certificate** is pinned, proven or compared. A Pond behind a reverse proxy, or renewing a Let's Encrypt
   certificate, needs nothing from its members or from them.
 
+## Editing and deleting messages
+
+Protocol 14 of `/pond/v1`, the feature `message_edits` (Pond's [`docs/design.md`](/wiki/pond/design/), "Editing and deleting messages"). The Pond
+holds the history, so it is the Pond, not the author's Puddle, that changes it; nothing here is signed by the author yet (see
+"Later").
+
+- **Edit** (`POST /pond/v1/channels/{channel}/messages/{message}/edit {text?, files?}`): only the author's, and an edit only
+  drops files (`files`: the ids kept). A message gains `edited` (ms) once edited.
+- **Delete** (`.../delete`): the author's own, or anyone's for a member the channel lets `manage_messages`.
+- **Events**: `message_edited` (the message as it reads now) and `message_deleted` (`{id, channel}`), given like any event
+  about a channel. A Puddle puts an edit in place of the message it keeps (ignoring one that names another author) and
+  forgets a deleted one with its files. The Pond rewrites the earlier events about the message, so a member catching up
+  never receives what was taken back: they say it as it reads now, or become `message_deleted`.
+- **The message log** is the Pond's: every earlier text, and deleted messages with their files, for members the channel lets
+  `view_message_log`, until it is purged (`.../purge`). Members without it see only the message as it reads now, or nothing.
+  A Puddle that copied a message before it was edited or deleted may still hold it: deleting is a request to hide, not an
+  erase, as between Puddles (Puddle's [`docs/storage.md`](/wiki/puddle/design/storage/)).
+
 ## Later (protocol, not built)
 
 - **Messages signed by their authors**, so a Pond can't forge what a member said (members trust the Pond for what it
   shows today, as they trust a Discord server). The event format would be a Puddle event (part 03): the author's
-  signature over exact bytes, naming `kid`.
+  signature over exact bytes, naming `kid`. An edit or deletion would then be the author's own `edit` or `redact` event, as
+  between Puddles (Puddle's [`docs/storage.md`](/wiki/puddle/design/storage/)), and a moderator's deletion the Pond's.
 - **Roles and moderation** travel as Pond events like any other.

@@ -31,6 +31,8 @@ A **stream** is the connection between two Puddles: private, peer to peer, both 
   Behind a Levee the record also names the Levee (part 06).
 - **Profiles, pictures, files** (`/stream/v1/profile`, `/stream/v1/media`, `/stream/v1/files/...`).
 - **Closing** (`POST /stream/v1/close`).
+- **Undelivered** (`POST /stream/v1/undelivered`): from a friend's Levee, not the friend: what it took in custody and
+  then gave up on, so the sender counts it as not delivered (part 06, "When the Levee gives up").
 
 ## Proving who answers
 
