@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-label="Puddles joined to one Pond">
+<style>.node { fill: #1b2117 } .link { stroke: #1b2117 } .light { fill: #ccff00 } @media (prefers-color-scheme: dark) { .node { fill: #ccff00 } .link { stroke: #5d6a53 } .light { fill: #ffffff } } @media (prefers-reduced-motion: reduce) { .pulse { display: none } }</style>
+<defs>
+<filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<g class="link" stroke-width="11" stroke-linecap="round">
+<line x1="403.6" y1="138.4" x2="337.8" y2="102.6"/>
+<line x1="553.0" y1="132.7" x2="605.5" y2="98.8"/>
+<line x1="565.3" y1="197.1" x2="670.7" y2="218.1"/>
+<line x1="542.7" y1="240.3" x2="580.4" y2="276.6"/>
+<line x1="403.9" y1="222.1" x2="338.1" y2="258.4"/>
+<line x1="393.1" y1="176.5" x2="266.0" y2="171.3"/>
+</g>
+<g class="node">
+<circle cx="480" cy="180" r="74"/>
+<circle cx="300" cy="82" r="30"/>
+<circle cx="650" cy="70" r="40"/>
+<circle cx="705" cy="225" r="22"/>
+<circle cx="610" cy="305" r="28"/>
+<circle cx="290" cy="285" r="42"/>
+<circle cx="235" cy="170" r="18"/>
+</g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M337.8,102.6 L403.6,138.4 M542.7,240.3 L580.4,276.6" dur="0.53s" begin="0s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="0.53s" begin="0s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M605.5,98.8 L553.0,132.7 M403.9,222.1 L338.1,258.4" dur="0.57s" begin="0.9s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="0.57s" begin="0.9s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M266.0,171.3 L393.1,176.5 M565.3,197.1 L670.7,218.1" dur="0.98s" begin="1.7s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="0.98s" begin="1.7s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M580.4,276.6 L542.7,240.3 M553.0,132.7 L605.5,98.8" dur="0.48s" begin="2.6s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="0.48s" begin="2.6s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M338.1,258.4 L403.9,222.1 M403.6,138.4 L337.8,102.6" dur="0.63s" begin="3.4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="0.63s" begin="3.4s" repeatCount="indefinite"/></g>
+</svg>

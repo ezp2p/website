@@ -1,12 +1,18 @@
+/* Brand: the logo's neon lime. As a fill it always carries dark text (--on-brand, about 16:1). As text it is only used
+   on the dark theme; the light theme's --accent is a deep olive from the same hue, so links stay readable (7:1). */
 :root {
-  --bg: #f7fafc;
+  --brand: #ccff00;
+  --on-brand: #11140d;
+  --bg: #f8faf5;
   --surface: #ffffff;
-  --text: #1c2733;
-  --muted: #5b6b7c;
-  --line: #dde5ed;
-  --accent: #1f6fb2;
-  --accent-soft: #e6f0f9;
-  --code-bg: #eef3f8;
+  --text: #1b2117;
+  --muted: #5c6656;
+  --line: #e1e6da;
+  --accent: #3f5c00;
+  --accent-soft: #eefcc4;
+  --code-bg: #eff2ea;
+  --warn-bg: #fff3ec;
+  --warn-line: #f2c9b5;
   --radius: 10px;
   --wrap: 68rem;
   color-scheme: light dark;
@@ -14,14 +20,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f161d;
-    --surface: #16202a;
-    --text: #e3eaf1;
-    --muted: #93a4b5;
-    --line: #26333f;
-    --accent: #6cb4ee;
-    --accent-soft: #1a2c3c;
-    --code-bg: #1c2833;
+    --bg: #0e110c;
+    --surface: #161b13;
+    --text: #e6ebe1;
+    --muted: #9aa591;
+    --line: #273021;
+    --accent: #ccff00;
+    --accent-soft: #263010;
+    --code-bg: #1d2318;
+    --warn-bg: #2a1616;
+    --warn-line: #4a2626;
   }
 }
 
@@ -52,7 +60,8 @@ a { color: var(--accent); text-underline-offset: 2px; }
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: .5rem 1.5rem; padding-top: .9rem; padding-bottom: .9rem;
 }
-.brand { font-weight: 700; font-size: 1.15rem; color: var(--text); text-decoration: none; letter-spacing: .01em; }
+.site-header { border-top: 4px solid var(--brand); }
+.brand { font-weight: 800; font-size: 1.1rem; color: var(--on-brand); background: var(--brand); text-decoration: none; letter-spacing: .01em; padding: .1rem .6rem; border-radius: 6px; }
 .site-header nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
 .site-header nav a { color: var(--muted); text-decoration: none; }
 .site-header nav a:hover, .site-header nav a[aria-current] { color: var(--text); }
@@ -87,14 +96,15 @@ pre code { background: none; padding: 0; }
 .hero h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin: 0 0 1rem; max-width: 22ch; }
 .hero p { font-size: 1.2rem; color: var(--muted); max-width: 40rem; margin: 0; }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.25rem; margin: 1rem 0 3rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr)); gap: 1.25rem; margin: 1rem 0 3rem; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.4rem 1.2rem; display: flex; flex-direction: column; }
 .card h2 { margin: 0 0 .25rem; font-size: 1.35rem; }
 .card .tag { margin: 0 0 .75rem; color: var(--muted); font-size: .95rem; }
 .card p { margin: 0 0 1rem; }
 .card .more { margin-top: auto; font-weight: 600; }
 
-.status { display: inline-block; font-size: .78rem; font-weight: 600; padding: .1rem .5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); vertical-align: middle; margin-left: .4rem; }
+.status { display: inline-block; font-size: .78rem; font-weight: 600; padding: .1rem .5rem; border-radius: 99px; background: #fdf1dc; color: #8a5100; vertical-align: middle; margin-left: .4rem; }
+@media (prefers-color-scheme: dark) { .status { background: #34270f; color: #f0bd6a; } }
 
 /* Wiki */
 
@@ -116,9 +126,7 @@ pre code { background: none; padding: 0; }
 }
 
 
-.project-status-card {
-  background-color: #2a1616;
-}
+.project-status-card { background: var(--warn-bg); border-color: var(--warn-line); }
 
 /* Feature roadmap (features.md) */
 
@@ -140,16 +148,43 @@ pre code { background: none; padding: 0; }
 .roadmap-footer { margin-top: 2.5rem; }
 
 .badge { display: inline-block; font-size: .78rem; font-weight: 600; padding: .1rem .55rem; border-radius: 99px; white-space: nowrap; background: var(--accent-soft); color: var(--accent); }
-.badge-done { background: #e3f4e8; color: #1d7a3a; }
-.badge-in-progress { background: #fdf1dc; color: #9a5b00; }
-.badge-planned { background: var(--accent-soft); color: var(--accent); }
+.badge-done { background: var(--brand); color: var(--on-brand); }
+.badge-in-progress { background: #fdf1dc; color: #8a5100; }
+.badge-planned { background: #e6f0f9; color: #1f5f99; }
 .badge-idea { background: var(--code-bg); color: var(--muted); }
 
 @media (prefers-color-scheme: dark) {
-  .badge-done { background: #17301f; color: #7fd69a; }
   .badge-in-progress { background: #34270f; color: #f0bd6a; }
+  .badge-planned { background: #1a2c3c; color: #8cc4f2; }
 }
 
 @media (max-width: 34rem) {
   .roadmap-item { grid-template-columns: 1fr; gap: .3rem; }
 }
+
+/* Terminology (terminology.md) */
+
+.terms { max-width: calc(52rem + 2.5rem); }
+.terms h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 1rem; }
+.terms .lede { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+.terms-index { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin: 0 0 2rem; font-size: .95rem; }
+.terms-section { margin: 2rem 0; scroll-margin-top: 1rem; }
+.terms-section h2 { font-size: 1.4rem; margin: 0 0 .75rem; }
+.terms-list { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.term { padding: .85rem 1.1rem; scroll-margin-top: 1rem; }
+.term + .term { border-top: 1px solid var(--line); }
+.term:target { background: var(--accent-soft); }
+.term dt { font-weight: 700; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .7rem; }
+.term-anchor { color: var(--text); text-decoration: none; }
+.term-anchor:hover { text-decoration: underline; }
+.term-aka { font-weight: 400; font-size: .9rem; color: var(--muted); }
+.term dd { margin: .3rem 0 0; }
+.term dd p { margin: 0 0 .4rem; }
+.term-refs { font-size: .9rem; color: var(--muted); }
+.term-spec { white-space: nowrap; }
+.term-spec:not(:first-child) { margin-left: .4rem; }
+.terms-footer { margin-top: 2.5rem; }
+
+/* Feature image at the top of a page (front matter: image, image_alt) */
+
+.feature-image { display: block; width: 100%; height: auto; aspect-ratio: 960 / 360; border-radius: var(--radius); margin: 0 0 1.75rem; }

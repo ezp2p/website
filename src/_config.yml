@@ -17,8 +17,12 @@ nav:
     url: /puddle/
   - title: Pond
     url: /pond/
+  - title: Pools
+    url: /pools/
   - title: Levee
     url: /levee/
+  - title: Terminology
+    url: /terminology/
   - title: Wiki
     url: /wiki/
 
@@ -30,6 +34,9 @@ wikis:
   - id: pond
     title: Pond
     repo: ezp2p/pond
+  - id: pools
+    title: Pools
+    repo: ezp2p/puddle
   - id: levee
     title: Levee
     repo: ezp2p/levee

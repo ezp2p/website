@@ -7,6 +7,10 @@ layout: default
   <p class="lede">{{ page.lede }}</p>
   {%- endif %}
 
+  <section class="prose">
+    {{ content }}
+  </section>
+
   <ul class="roadmap-legend">
     {%- for s in page.statuses %}
     <li><span class="badge badge-{{ s.id }}">{{ s.label }}</span></li>
@@ -15,7 +19,7 @@ layout: default
 
   {%- for group in page.groups %}
   {%- assign done = group.features | where: "status", "done" | size %}
-  <section class="roadmap-group">
+  <section class="roadmap-group" id="{{ group.title | slugify }}">
     <h2>
       {%- if group.url %}<a href="{{ group.url | relative_url }}">{{ group.title }}</a>{% else %}{{ group.title }}{% endif %}
       <span class="roadmap-count">{{ done }} of {{ group.features.size }} done</span>

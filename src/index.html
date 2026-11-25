@@ -12,7 +12,7 @@ title: ezp2p
     <div class="card project-status-card">
       <h2>Project Status</h2>
       <p>
-        Puddle is not yet complete.
+        Puddle is very much 'alpha' software; nowhere near functionally complete.
       </p>
       <p>
         It is being actively developed but it is nowhere near feature complete.
@@ -22,6 +22,21 @@ title: ezp2p
         Please see our feature roadmap for more information.
       </p>
       <a class="more" href="{{ '/features/' | relative_url }}">Feature Roadmap</a>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h2>Puddles Pond</h2>
+      <p>
+        Puddle has a Pond!
+      </p>
+      <em>
+        pond://pond.ezp2p.org?invite=gjmp2glhotzyueldrtdxausldi&k=ii7ab5pvivns6xmmiboey6hu5fc7y3ih23ebghjysulnz6huruwq
+      </em>
+      <p>
+        You might want to check out <a href="{{ '/terminology/' | relative_url }}">/terminology</a> to understand what this means.
+      </p>
     </div>
   </section>
 
@@ -39,6 +54,12 @@ title: ezp2p
       <a class="more" href="{{ '/pond/' | relative_url }}">About Pond →</a>
     </div>
     <div class="card">
+      <h2>Pools</h2>
+      <p class="tag">A community with no server. <span class="status">In development</span></p>
+      <p>A Pool is a Pond that nobody has to run. Its members' Puddles hold the channels and history between them, and pass new messages on to each other.</p>
+      <a class="more" href="{{ '/pools/' | relative_url }}">About Pools →</a>
+    </div>
+    <div class="card">
       <h2>Levee</h2>
       <p class="tag">A steady address for a Puddle. <span class="status">Design draft</span></p>
       <p>A Levee is a relay for a Puddle that can't take connections from the internet. It gives the Puddle a fixed address and holds messages while it is offline, without being able to read them.</p>
@@ -49,7 +70,7 @@ title: ezp2p
   <section class="prose">
     <h2>How they fit together</h2>
     <p>Two friends each run a Puddle. Once they've added each other, their Puddles hold a <strong>stream</strong>: a trusted, signed connection between the two. Messages, files and calls travel over it directly.</p>
-    <p>Ponds are where groups meet. A Puddle joins a Pond with an invite and keeps a copy of recent messages; the Pond keeps the rest. A Levee, once built, sits in front of a Puddle that can't open a port, so friends and Ponds can still reach it.</p>
+    <p>Ponds are where groups meet. A Puddle joins a Pond with an invite and keeps a copy of recent messages; the Pond keeps the rest. A Pool, once built, will be the same thing with no server: its members' Puddles hold it between them. A Levee, once built, sits in front of a Puddle that can't open a port, so friends and Ponds can still reach it.</p>
     <p>Everything they say to each other follows the <a href="https://github.com/ezp2p/protocol">Puddle Protocol</a>, written down once so each program can be built and upgraded on its own. Nothing is public: a request that fails any check gets the same answer as a path that doesn't exist.</p>
     <p>Setting one up? The <a href="{{ '/wiki/' | relative_url }}">wiki</a> has the details.</p>
   </section>

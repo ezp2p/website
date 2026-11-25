@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-label="Puddles sharing a Pool between several seeders">
+<style>.node { fill: #1b2117 } .link { stroke: #1b2117 } .light { fill: #ccff00 } @media (prefers-color-scheme: dark) { .node { fill: #ccff00 } .link { stroke: #5d6a53 } .light { fill: #ffffff } } @media (prefers-reduced-motion: reduce) { .pulse { display: none } }</style>
+<defs>
+<filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<g class="link" stroke-width="11" stroke-linecap="round">
+<line x1="272.7" y1="137.6" x2="418.2" y2="106.2"/>
+<line x1="521.5" y1="107.6" x2="675.8" y2="145.5"/>
+<line x1="679.3" y1="184.9" x2="550.2" y2="242.6"/>
+<line x1="449.0" y1="244.4" x2="269.7" y2="172.1"/>
+<line x1="479.2" y1="147.2" x2="490.4" y2="210.8"/>
+<line x1="165.0" y1="118.7" x2="121.3" y2="91.4"/>
+<line x1="169.8" y1="187.9" x2="118.3" y2="231.2"/>
+<line x1="423.0" y1="70.5" x2="369.0" y2="42.5"/>
+<line x1="518.1" y1="72.7" x2="581.9" y2="43.1"/>
+<line x1="785.8" y1="126.2" x2="842.5" y2="88.3"/>
+<line x1="781.3" y1="199.7" x2="845.4" y2="254.6"/>
+<line x1="448.2" y1="283.4" x2="376.1" y2="309.0"/>
+<line x1="550.5" y1="286.9" x2="625.2" y2="319.3"/>
+</g>
+<g class="node">
+<circle cx="215" cy="150" r="46"/>
+<circle cx="470" cy="95" r="40"/>
+<circle cx="735" cy="160" r="48"/>
+<circle cx="500" cy="265" r="42"/>
+<circle cx="95" cy="75" r="18"/>
+<circle cx="90" cy="255" r="24"/>
+<circle cx="345" cy="30" r="14"/>
+<circle cx="610" cy="30" r="18"/>
+<circle cx="870" cy="70" r="20"/>
+<circle cx="875" cy="280" r="26"/>
+<circle cx="345" cy="320" r="20"/>
+<circle cx="650" cy="330" r="14"/>
+</g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M121.3,91.4 L165.0,118.7 M272.7,137.6 L418.2,106.2 M521.5,107.6 L675.8,145.5 M781.3,199.7 L845.4,254.6" dur="1.85s" begin="0s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="1.85s" begin="0s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M842.5,88.3 L785.8,126.2 M679.3,184.9 L550.2,242.6 M449.0,244.4 L269.7,172.1 M169.8,187.9 L118.3,231.2" dur="1.96s" begin="1.2s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="1.96s" begin="1.2s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M369.0,42.5 L423.0,70.5 M479.2,147.2 L490.4,210.8 M550.5,286.9 L625.2,319.3" dur="0.86s" begin="2.3s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="0.86s" begin="2.3s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M376.1,309.0 L448.2,283.4 M550.2,242.6 L679.3,184.9 M785.8,126.2 L842.5,88.3" dur="1.19s" begin="3.1s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="1.19s" begin="3.1s" repeatCount="indefinite"/></g>
+<g class="pulse" opacity="0"><circle class="light" r="15" opacity=".6" filter="url(#glow)"/><circle class="light" r="4.5"/><animateMotion path="M581.9,43.1 L518.1,72.7 M418.2,106.2 L272.7,137.6 M165.0,118.7 L121.3,91.4" dur="1.13s" begin="4.0s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;.8;1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.04;.76;.8;1" dur="1.13s" begin="4.0s" repeatCount="indefinite"/></g>
+</svg>
