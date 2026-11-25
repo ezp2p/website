@@ -19,6 +19,7 @@ used to live in each repository (Puddle's `docs/roadmap.md` and `docs/discuss-la
 - [Ponds](/wiki/decisions/ponds/): files, roles, direct messages through a Pond
 - [Levee](/wiki/decisions/levee/)
 - [The protocol](/wiki/decisions/protocol/): why it is separate, the shared library, versioning
+- [Versions and compatibility](/wiki/decisions/versions/): what happens when Puddles, Ponds and Pools run different versions
 - [The apps](/wiki/decisions/clients/): the desktop window and the phone client
 - [Builds and releases](/wiki/decisions/releases/)
 - [Open questions](/wiki/decisions/open-questions/): what is still waiting for a decision

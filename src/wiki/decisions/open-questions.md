@@ -16,6 +16,11 @@ questions" and "Not decided" sections of the design documents. The live list is
 
 - [Hold what goes out for an away friend who has no Levee](https://github.com/ezp2p/levee/issues/15) (ezp2p/levee#15)
 
+## Protocol
+
+- [Version mismatch between Puddles](https://github.com/ezp2p/protocol/issues/10) (ezp2p/protocol#10)
+- [Version mismatch between a Puddle and a Pond](https://github.com/ezp2p/protocol/issues/11) (ezp2p/protocol#11)
+
 ## Pond
 
 - [Messages signed by their authors](https://github.com/ezp2p/pond/issues/37) (ezp2p/pond#37)
@@ -38,6 +43,7 @@ questions" and "Not decided" sections of the design documents. The live list is
 - [Check history signed by retired keys](https://github.com/ezp2p/puddle/issues/94) (ezp2p/puddle#94)
 - [An outside review of the key chain and pre-rotation](https://github.com/ezp2p/puddle/issues/95) (ezp2p/puddle#95)
 - [Update itself](https://github.com/ezp2p/puddle/issues/98) (ezp2p/puddle#98)
+- [Pools: version mismatch inside a Pool](https://github.com/ezp2p/puddle/issues/130) (ezp2p/puddle#130)
 - [Notifications while the app is closed](https://github.com/ezp2p/puddle/issues/111) (ezp2p/puddle#111)
 - [Sign Pond messages, and check authors' signatures](https://github.com/ezp2p/puddle/issues/119) (ezp2p/puddle#119)
 
