@@ -164,6 +164,29 @@ write(
         (["m4", "h2", "h1", "m1"], 4.0),
     ],
 )
+# Drip: one person's feed, and the people they share it with, each pulling it down over their own stream.
+# Each pulse goes out to someone and reflects back to the feed.
+drip = {
+    "me": (200, 180, 74),
+    "p1": (560, 40, 26),
+    "p2": (730, 110, 34),
+    "p3": (780, 225, 24),
+    "p4": (650, 310, 30),
+    "p5": (470, 330, 22),
+}
+write(
+    "drip",
+    "One person's feed, pulled down by each of the people they share it with",
+    drip,
+    [("me", p) for p in drip if p != "me"],
+    [
+        (["me", "p2", "me"], 0),
+        (["me", "p4", "me"], 0.9),
+        (["me", "p1", "me"], 1.8),
+        (["me", "p5", "me"], 2.7),
+        (["me", "p3", "me"], 3.6),
+    ],
+)
 print("wrote", sorted(p.name for p in OUT.glob("feature-*.svg")))
 
 
@@ -184,6 +207,7 @@ CARDS = {
     "pond": ("Pond", "A community server with channels, roles and voice, joined from your Puddle."),
     "pools": ("Pools", "A community with no server: its members' Puddles hold it. In development."),
     "levee": ("Levee", "A steady address for a Puddle that can't take connections from the internet."),
+    "drip": ("Drip", "Host your own feed. You decide who sees it. Coming soon."),
 }
 
 

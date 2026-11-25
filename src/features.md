@@ -1,6 +1,6 @@
 ---
 title: Feature roadmap
-description: What Puddle, Pond and Levee can do today, what is being built, and what is planned.
+description: What Puddle, Pond, Levee, Pools and Drip can do today, what is being built, and what is planned.
 permalink: /features/
 layout: features
 lede: What works today, what's being built, and what's planned.
@@ -140,6 +140,24 @@ groups:
       - name: Releases from master
         status: planned
         notes: For now Levee is built from its `dev` branch.
+
+  - title: Drip
+    url: /drip/
+    features:
+      - name: Design
+        status: idea
+        notes: "Early notes in [part 07 of the Puddle Protocol](https://github.com/ezp2p/protocol/blob/master/spec/07-drip.md)."
+      - name: Hosting your own feed
+        status: idea
+        notes: Posting creates posts on your own device.
+      - name: Adding people over a stream
+        status: idea
+      - name: Pulling the feeds you follow down to your device
+        status: idea
+      - name: Choosing what you share, and with whom
+        status: idea
+      - name: Keeping your feed reachable with a Levee
+        status: idea
 ---
 
 ## Developers Notes
