@@ -114,3 +114,8 @@ pre code { background: none; padding: 0; }
   .wiki { grid-template-columns: 1fr; gap: 1.5rem; }
   .wiki-nav { border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
 }
+
+
+.project-status-card {
+  background-color: #2a1616;
+}
