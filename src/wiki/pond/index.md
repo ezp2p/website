@@ -5,6 +5,8 @@ nav_order: 0
 
 A [Pond]({{ '/pond/' | relative_url }}) is a community server that people join from their Puddle.
 
-- [Running a Pond]({{ '/wiki/pond/running-a-pond/' | relative_url }}): building it, setting it up, and making invites.
+- [Installation]({{ '/wiki/pond/installation/' | relative_url }}): with Docker (the easy way), or building it yourself.
+- [Ports]({{ '/wiki/pond/ports/' | relative_url }}): which ports a Pond uses, what each carries, and running behind a
+  reverse proxy.
 
-The design is in the [pond repository](https://github.com/ezp2p/pond) (`docs/design.md`, `api/pond.yaml`).
+The design is in the [pond repository](https://github.com/ezp2p/pond/tree/dev) (`docs/design.md`, `api/pond.yaml`).

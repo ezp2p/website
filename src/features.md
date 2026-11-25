@@ -42,8 +42,17 @@ groups:
         status: done
       - name: "`puddled` (no window) and Docker image"
         status: done
+      - name: End-to-end encryption between Puddles
+        status: done
+        notes: Every message is sealed to the receiving Puddle's key; nothing in between can read it.
+      - name: Encrypting chats and keys on disk
+        status: planned
+        notes: Nothing is encrypted at rest yet. Use your system's disk encryption meanwhile.
       - name: Joining Ponds
         status: done
+      - name: Running behind a Levee
+        status: done
+        notes: In the app (Settings → Levee) and in `puddled`.
       - name: Phone client
         status: planned
         notes: Connects back to your own Puddle; hosts nothing.
@@ -59,10 +68,22 @@ groups:
       - name: "`pondctl` admin tool"
         status: done
       - name: Roles
-        status: planned
-      - name: Files
-        status: planned
+        status: done
+        notes: Permissions, colours and an order, for the whole Pond and for each channel.
+      - name: Invites and moderation from the app
+        status: done
+        notes: Operators and administrators make and revoke invites, and mute members.
+      - name: Direct messages between members
+        status: done
+        notes: Relayed by the Pond, sealed end to end, never kept.
+      - name: Editing and deleting messages
+        status: done
+      - name: Pages and a banner
+        status: done
       - name: Voice
+        status: done
+        notes: Including voice moderation, and through a Levee.
+      - name: Files
         status: planned
 
   - title: Pools
@@ -92,13 +113,33 @@ groups:
   - title: Levee
     url: /levee/
     features:
-      - name: Design
-        status: in-progress
-        notes: "[Part 06 of the Puddle Protocol](https://github.com/ezp2p/protocol/blob/master/spec/06-levee.md)."
       - name: Fixed address for a Puddle behind a router
+        status: done
+        notes: Your Puddle connects out to the Levee and needs no open ports.
+      - name: Passing traffic through while your Puddle is on
+        status: done
+      - name: Holding messages while your Puddle is offline
+        status: done
+        notes: The sender gets a custody receipt, and both ends are told if the Levee gives up on one.
+      - name: Sending out through the Levee
+        status: done
+        notes: Nobody you talk to learns your home address.
+      - name: Files left for friends
+        status: done
+        notes: Encrypted under keys the Levee never sees.
+      - name: Calls through the Levee's relay
+        status: done
+      - name: Behind a reverse proxy
+        status: done
+      - name: Docker image
+        status: done
+        notes: "`ghcr.io/ezp2p/levee:dev`. [Installing a Levee](/wiki/levee/installation/)."
+      - name: "Wire protocol: part 06"
+        status: done
+        notes: "[Part 06 of the Puddle Protocol](https://github.com/ezp2p/protocol/blob/master/spec/06-levee.md)."
+      - name: Releases from master
         status: planned
-      - name: Holding messages while a Puddle is offline
-        status: planned
+        notes: For now Levee is built from its `dev` branch.
 ---
 
 ## Developers Notes

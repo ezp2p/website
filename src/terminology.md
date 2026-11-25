@@ -28,6 +28,14 @@ sections:
           invite links; people join from their Puddle. [More about Pond](/pond/).
         see: [pondd, pondctl, Invite link]
         spec: 05-ponds
+      - term: leveed
+        definition: The Levee service. It has no window, serves HTTPS on one port, and relays calls over UDP.
+        see: [Levee, leveectl]
+      - term: leveectl
+        definition: >-
+          The Levee admin's tool. It sets up the Levee's key, prints the one-time link your Puddle joins with, and
+          shows what is waiting.
+        see: [Levee]
       - term: pondd
         definition: The Pond service. It has no window and serves HTTPS on one port.
         see: [Pond]
@@ -45,8 +53,9 @@ sections:
       - term: Levee
         definition: >-
           A relay for a Puddle that can't take connections from the internet. It gives the Puddle a fixed address and
-          holds messages while it is offline, without being able to read them. Still a design draft.
+          holds messages and files while it is offline, without being able to read them.
           [More about Levee](/levee/).
+        see: [leveed, leveectl, Custody receipt]
         spec: 06-levee
       - term: Phone client
         definition: >-
@@ -131,6 +140,12 @@ sections:
           Puddle, whatever sits in between.
         see: [Signature]
         spec: 02-signatures
+      - term: Custody receipt
+        definition: >-
+          A receipt a Levee signs when it takes a message for a Puddle that's offline, so the sender sees "waiting at
+          their Levee" rather than "delivered".
+        see: [Levee, Receipt]
+        spec: 06-levee
       - term: Signature
         definition: Every request carries the sender's signature, and every answer to a known sender carries a receipt.
         see: [Receipt]

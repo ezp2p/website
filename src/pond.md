@@ -3,6 +3,7 @@ title: Pond
 description: A Pond is a community server for Puddle, with channels and many members, joined by invite link.
 permalink: /pond/
 image: /assets/img/feature-pond.svg
+og_image: /assets/img/og-pond.png
 image_alt: Many Puddles joined to one Pond, with light passing through the hub.
 ---
 
@@ -40,10 +41,11 @@ Every request your Puddle makes to a Pond is signed with your key, the same way 
 
 ## Status
 
-Text channels are built. Roles, files and voice are planned.
+Pond works and is ready to test: text and voice channels, roles and permissions, direct messages between members, and invites and moderation from the app. Shared files are planned. See the [roadmap]({{ '/features/' | relative_url }}#pond) for the details.
 
 ## Next
 
-- [Run a Pond]({{ '/wiki/pond/running-a-pond/' | relative_url }})
+- [Install a Pond]({{ '/wiki/pond/installation/' | relative_url }})
+- [Pond ports]({{ '/wiki/pond/ports/' | relative_url }})
 - [Pond wiki]({{ '/wiki/pond/' | relative_url }})
 - [Source on GitHub](https://github.com/ezp2p/pond)

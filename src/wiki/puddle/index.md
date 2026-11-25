@@ -5,7 +5,7 @@ nav_order: 0
 
 [Puddle]({{ '/puddle/' | relative_url }}) is the app that keeps your chats on your own computer.
 
-- [Installation]({{ '/wiki/puddle/installation/' | relative_url }}): on a computer at home, or headless on a server
-  with Docker.
+- [Installation]({{ '/wiki/puddle/installation/' | relative_url }}): getting the dev build, running it on your computer
+  at home with a port forward, or on a server with Docker.
 
-The design notes and API specs are in the [puddle repository](https://github.com/ezp2p/puddle) (`docs/`, `api/`).
+The design notes and API specs are in the [puddle repository](https://github.com/ezp2p/puddle/tree/dev) (`docs/`, `api/`).
