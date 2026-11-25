@@ -11,6 +11,8 @@ It runs on a server with a public address; your Puddle connects out to it.
 - [Binding a Levee]({{ '/wiki/levee/binding/' | relative_url }}): joining your Levee to your Puddle, what changes, and
   leaving again.
 
-The full reference (every setting in `levee.yaml`, every `leveectl` command, and what is kept in the data folder) is in
-the [Levee README](https://github.com/ezp2p/levee/tree/dev#readme). What a Levee says on the wire is
-[part 06 of the Puddle Protocol](https://github.com/ezp2p/protocol/blob/master/spec/06-levee.md).
+- [Reference]({{ '/wiki/levee/reference/' | relative_url }}): what a Levee does, every setting in `levee.yaml`, every
+  `leveectl` command, and what is kept in the data folder.
+
+What a Levee says on the wire is [part 06 of the Puddle Protocol]({{ '/wiki/protocol/levee/' | relative_url }}). The
+Puddle's side is [Design: Levee]({{ '/wiki/puddle/design/levee/' | relative_url }}).

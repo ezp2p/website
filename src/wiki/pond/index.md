@@ -9,4 +9,8 @@ A [Pond]({{ '/pond/' | relative_url }}) is a community server that people join f
 - [Ports]({{ '/wiki/pond/ports/' | relative_url }}): which ports a Pond uses, what each carries, and running behind a
   reverse proxy.
 
-The design is in the [pond repository](https://github.com/ezp2p/pond/tree/dev) (`docs/design.md`, `api/pond.yaml`).
+- [Docker]({{ '/wiki/pond/docker/' | relative_url }}): the Pond's containers, and what is kept where.
+- [Design]({{ '/wiki/pond/design/' | relative_url }}): how a Pond works, with direct messages, voice channels, and the
+  protocol it speaks.
+
+The routes are in the [pond repository](https://github.com/ezp2p/pond/tree/dev) (`api/pond.yaml`).
