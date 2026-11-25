@@ -3,6 +3,7 @@ title: Pools
 description: A Pool is a Pond without a server, a community held and shared by its members' Puddles. In development.
 permalink: /pools/
 image: /assets/img/feature-pools.svg
+og_image: /assets/img/og-pools.png
 image_alt: Several seeders joined to each other, each with Puddles of its own, with light passing between them.
 ---
 
@@ -44,8 +45,8 @@ Pools are built into Puddle itself. There's no separate program to install.
 | Who runs it         | Someone, on a server of their own  | Nobody: its members' Puddles           |
 | Where history lives | On the Pond                        | Shared between seeders                 |
 | Who is in charge    | The Pond's admin, with `pondctl`   | Its Auth Puddles                       |
-| Voice               | Planned                            | A mesh, about 8 people per channel     |
-| Status              | Text channels built                | In development                         |
+| Voice               | Voice channels                     | A mesh, about 8 people per channel     |
+| Status              | Ready to test                      | In development                         |
 
 ## Not yet decided
 

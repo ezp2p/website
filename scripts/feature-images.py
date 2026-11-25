@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Draws the feature images in src/assets/img/feature-*.svg.
+"""Draws the site's images:
+
+- src/assets/img/feature-*.svg: the animated picture at the top of each program's page;
+- src/assets/img/og-*.png: the cards link previews show (Discord, Slack, Mastodon...), 1200x630;
+- src/favicon.ico, src/assets/img/favicon-*.png, src/apple-touch-icon.png: from the logo, src/assets/img/logo.png.
 
 Run from the repository root:  python3 scripts/feature-images.py
+The PNGs need Pillow, and Noto Sans (Black and Medium) for their lettering (NOTO below says where).
 
 They follow the ezp2p logo: solid nodes and thick round-capped links that stop short of each node, on a clear ground.
 Their colours follow the site's theme (prefers-color-scheme): on the light theme, dark ink with a lime pulse; on the
@@ -76,9 +81,13 @@ def svg(title, nodes, links, routes):
     return "\n".join(out) + "\n"
 
 
+PAGES = {}  # name: (nodes, links), for the preview cards
+
+
 def write(name, *args):
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"feature-{name}.svg").write_text(svg(*args))
+    PAGES[name] = (args[1], args[2])
 
 
 # Puddle: two Puddles, straight to each other.
@@ -156,3 +165,100 @@ write(
     ],
 )
 print("wrote", sorted(p.name for p in OUT.glob("feature-*.svg")))
+
+
+# ---- Link preview cards and favicons (PNG) ----
+
+from PIL import Image, ImageDraw, ImageFont  # noqa: E402
+
+NOTO = Path("/usr/share/fonts/noto")
+SITE = OUT.parent.parent  # src/
+INK = "#11140d"  # the site's --on-brand: text on lime
+CARD_W, CARD_H, SS = 1200, 630, 3  # drawn at 3x and scaled down, for smooth edges
+LOGO = OUT / "logo.png"
+
+# What each card says, beside its picture. The default card is for every other page.
+CARDS = {
+    "default": ("Chat with no servers in the middle.", "Your chats, on your own computer."),
+    "puddle": ("Puddle", "Your own chat, on your own computer, with no servers in between."),
+    "pond": ("Pond", "A community server with channels, roles and voice, joined from your Puddle."),
+    "pools": ("Pools", "A community with no server: its members' Puddles hold it. In development."),
+    "levee": ("Levee", "A steady address for a Puddle that can't take connections from the internet."),
+}
+
+
+def font(weight, size):
+    return ImageFont.truetype(str(NOTO / f"NotoSans-{weight}.ttf"), size * SS)
+
+
+def wrap(draw, text, f, width):
+    lines, line = [], ""
+    for word in text.split():
+        trial = f"{line} {word}".strip()
+        if draw.textlength(trial, font=f) <= width * SS or not line:
+            line = trial
+        else:
+            lines.append(line)
+            line = word
+    return lines + [line]
+
+
+def network(draw, nodes, links, box):
+    """The page's picture in black, fitted into box (x, y, w, h), as the logo draws it."""
+    bx, by, bw, bh = box
+    k = min(bw / W, bh / H)
+    ox, oy = bx + (bw - W * k) / 2, by + (bh - H * k) / 2
+
+    def pt(x, y):
+        return ((ox + x * k) * SS, (oy + y * k) * SS)
+
+    lw = LINK * k * SS
+    for a, b in links:
+        s, e = link_ends(nodes[a], nodes[b])
+        p, q = pt(*s), pt(*e)
+        draw.line([p, q], fill=INK, width=round(lw))
+        for cx, cy in (p, q):  # round caps
+            draw.ellipse([cx - lw / 2, cy - lw / 2, cx + lw / 2, cy + lw / 2], fill=INK)
+    for x, y, r in nodes.values():
+        cx, cy = pt(x, y)
+        rr = r * k * SS
+        draw.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=INK)
+
+
+def card(name):
+    title, line = CARDS[name]
+    img = Image.new("RGB", (CARD_W * SS, CARD_H * SS), BRAND)
+    d = ImageDraw.Draw(img)
+    pad = 72
+    if name in PAGES:
+        network(d, *PAGES[name], (600, 120, 540, 390))
+    else:
+        logo = Image.open(LOGO).convert("RGB").resize((430 * SS, 430 * SS), Image.LANCZOS)
+        img.paste(logo, (700 * SS, 100 * SS))
+
+    # the brand, small, top left
+    d.text((pad * SS, 64 * SS), "ezp2p", font=font("Black", 40), fill=INK)
+    # the title, then the line under it
+    tf = font("Black", 76 if name in PAGES else 60)
+    y = 190 if name in PAGES else 165
+    for t in wrap(d, title, tf, 520):
+        d.text((pad * SS, y * SS), t, font=tf, fill=INK)
+        y += 84 if name in PAGES else 70
+    lf = font("Medium", 32)
+    y += 22
+    for t in wrap(d, line, lf, 500):
+        d.text((pad * SS, y * SS), t, font=lf, fill=INK)
+        y += 44
+    d.text((pad * SS, (CARD_H - 92) * SS), "www.ezp2p.org", font=font("Medium", 28), fill=INK)
+    img.resize((CARD_W, CARD_H), Image.LANCZOS).save(OUT / f"og-{name}.png", optimize=True)
+
+
+for name in CARDS:
+    card(name)
+
+logo = Image.open(LOGO).convert("RGBA")
+logo.resize((32, 32), Image.LANCZOS).save(OUT / "favicon-32.png", optimize=True)
+logo.resize((192, 192), Image.LANCZOS).save(OUT / "favicon-192.png", optimize=True)
+logo.resize((180, 180), Image.LANCZOS).convert("RGB").save(SITE / "apple-touch-icon.png", optimize=True)
+logo.save(SITE / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+print("wrote", sorted(p.name for p in OUT.glob("og-*.png")), "and the favicons")

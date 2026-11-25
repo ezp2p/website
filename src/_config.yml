@@ -1,5 +1,5 @@
 title: ezp2p
-description: Chat with no servers in the middle. Puddle, Pond and Levee.
+description: Chat that runs on your own computer, with no servers in the middle. Puddle, Pond, Pools and Levee.
 url: "https://www.ezp2p.org"
 baseurl: ""
 github: https://github.com/ezp2p
@@ -28,6 +28,9 @@ nav:
 
 # The wiki's sections, in order. Each one is a folder in wiki/.
 wikis:
+  - id: about
+    title: About ezp2p
+    repo: ezp2p/website
   - id: puddle
     title: Puddle
     repo: ezp2p/puddle

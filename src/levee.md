@@ -3,10 +3,11 @@ title: Levee
 description: A Levee is a relay that gives a Puddle a steady public address and holds its messages while it's offline.
 permalink: /levee/
 image: /assets/img/feature-levee.svg
+og_image: /assets/img/og-levee.png
 image_alt: A friend's Puddle reaching another Puddle through its Levee, with light passing along the line.
 ---
 
-# Levee <span class="status">Design draft</span>
+# Levee
 
 <p class="lede">A steady address for a Puddle that can't take connections from the internet.</p>
 
@@ -19,7 +20,10 @@ your own), and your Puddle connects *out* to it. Friends then reach your Puddle 
 - **Passes everything through** while your Puddle is connected.
 - **Holds messages** that arrive while your Puddle is offline, and hands them over when it comes back.
 - **Keeps your address the same** when your home network changes.
-- **Sends for you** too: what your Puddle sends can go out through the Levee, and wait there if the other side is away.
+- **Sends for you** too: what your Puddle sends goes out through the Levee, so nobody you talk to learns your home
+  address.
+- **Holds your files** for friends, encrypted under keys it never sees, until each friend has fetched them.
+- **Relays calls**, since nothing can reach your Puddle directly for voice and video either.
 
 ## What a Levee can't do
 
@@ -33,10 +37,16 @@ you while you're away, it gives the sender a signed receipt, so the sender sees 
 
 ## Status
 
-Levee is a design draft. What it needs from the wire is in
+Levee works and is ready to test. It's a headless service (`leveed`) with an admin tool (`leveectl`): no database, just a
+config file and a data folder. One Levee serves one Puddle. Run it on a server with a public address, such as a small
+VPS, then join your Puddle to it with a one-time link.
+
+What it says on the wire is
 [part 06 of the Puddle Protocol](https://github.com/ezp2p/protocol/blob/master/spec/06-levee.md).
 
 ## Next
 
+- [Install a Levee]({{ '/wiki/levee/installation/' | relative_url }})
+- [Bind it to your Puddle]({{ '/wiki/levee/binding/' | relative_url }})
 - [Levee wiki]({{ '/wiki/levee/' | relative_url }})
 - [Source on GitHub](https://github.com/ezp2p/levee)
