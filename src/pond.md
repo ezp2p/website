@@ -2,6 +2,8 @@
 title: Pond
 description: A Pond is a community server for Puddle, with channels and many members, joined by invite link.
 permalink: /pond/
+image: /assets/img/feature-pond.svg
+image_alt: Many Puddles joined to one Pond, with light passing through the hub.
 ---
 
 # Pond

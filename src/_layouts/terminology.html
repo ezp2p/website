@@ -1,0 +1,48 @@
+---
+layout: default
+---
+{%- assign spec_base = "https://github.com/ezp2p/protocol/blob/master/spec/" %}
+<article class="wrap terms">
+  <h1>{{ page.title }}</h1>
+  {%- if page.lede %}
+  <p class="lede">{{ page.lede }}</p>
+  {%- endif %}
+
+  <nav class="terms-index" aria-label="Sections">
+    {%- for section in page.sections %}
+    <a href="#{{ section.title | slugify }}">{{ section.title }}</a>
+    {%- endfor %}
+  </nav>
+
+  {%- for section in page.sections %}
+  <section class="terms-section" id="{{ section.title | slugify }}">
+    <h2>{{ section.title }}</h2>
+    <dl class="terms-list">
+      {%- for t in section.terms %}
+      <div class="term" id="{{ t.term | slugify }}">
+        <dt>
+          <a class="term-anchor" href="#{{ t.term | slugify }}">{{ t.term }}</a>
+          {%- if t.aka %}<span class="term-aka">also {{ t.aka | join: ", " }}</span>{% endif %}
+        </dt>
+        <dd>
+          {{ t.definition | markdownify }}
+          {%- if t.see or t.spec %}
+          <p class="term-refs">
+            {%- if t.see %}See
+            {%- for s in t.see %} <a href="#{{ s | slugify }}">{{ s }}</a>{% unless forloop.last %},{% endunless %}{% endfor %}.
+            {%- endif %}
+            {%- if t.spec %} <a class="term-spec" href="{{ spec_base }}{{ t.spec }}.md">Protocol: {{ t.spec }}</a>{% endif %}
+          </p>
+          {%- endif %}
+        </dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </section>
+  {%- endfor %}
+
+  {%- assign extra = content | strip %}
+  {%- if extra != "" %}
+  <div class="prose terms-footer">{{ content }}</div>
+  {%- endif %}
+</article>

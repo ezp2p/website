@@ -2,6 +2,8 @@
 title: Levee
 description: A Levee is a relay that gives a Puddle a steady public address and holds its messages while it's offline.
 permalink: /levee/
+image: /assets/img/feature-levee.svg
+image_alt: A friend's Puddle reaching another Puddle through its Levee, with light passing along the line.
 ---
 
 # Levee <span class="status">Design draft</span>

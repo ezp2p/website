@@ -2,5 +2,8 @@
 layout: default
 ---
 <article class="wrap prose">
+{%- if page.image %}
+<img class="feature-image" src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}" width="960" height="360">
+{%- endif %}
 {{ content }}
 </article>

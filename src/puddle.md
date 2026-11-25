@@ -2,6 +2,8 @@
 title: Puddle
 description: Puddle is self-hosted chat that runs on your own computer and talks directly to your friends' Puddles.
 permalink: /puddle/
+image: /assets/img/feature-puddle.svg
+image_alt: Two Puddles connected directly, with light passing between them.
 ---
 
 # Puddle
