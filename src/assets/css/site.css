@@ -119,3 +119,37 @@ pre code { background: none; padding: 0; }
 .project-status-card {
   background-color: #2a1616;
 }
+
+/* Feature roadmap (features.md) */
+
+.roadmap { max-width: calc(52rem + 2.5rem); }
+.roadmap h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 1rem; }
+.roadmap .lede { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+.roadmap-legend { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.roadmap-group { margin: 2rem 0; }
+.roadmap-group h2 { font-size: 1.4rem; margin: 0 0 .75rem; display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; }
+.roadmap-group h2 a { color: var(--text); text-decoration: none; }
+.roadmap-group h2 a:hover { text-decoration: underline; }
+.roadmap-count { font-size: .9rem; font-weight: 400; color: var(--muted); }
+.roadmap-list { list-style: none; padding: 0; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.roadmap-item { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; align-items: baseline; padding: .7rem 1rem; }
+.roadmap-item + .roadmap-item { border-top: 1px solid var(--line); }
+.roadmap-item > .badge { justify-self: start; }
+.roadmap-name { font-weight: 600; }
+.roadmap-notes { display: block; color: var(--muted); font-size: .93rem; }
+.roadmap-footer { margin-top: 2.5rem; }
+
+.badge { display: inline-block; font-size: .78rem; font-weight: 600; padding: .1rem .55rem; border-radius: 99px; white-space: nowrap; background: var(--accent-soft); color: var(--accent); }
+.badge-done { background: #e3f4e8; color: #1d7a3a; }
+.badge-in-progress { background: #fdf1dc; color: #9a5b00; }
+.badge-planned { background: var(--accent-soft); color: var(--accent); }
+.badge-idea { background: var(--code-bg); color: var(--muted); }
+
+@media (prefers-color-scheme: dark) {
+  .badge-done { background: #17301f; color: #7fd69a; }
+  .badge-in-progress { background: #34270f; color: #f0bd6a; }
+}
+
+@media (max-width: 34rem) {
+  .roadmap-item { grid-template-columns: 1fr; gap: .3rem; }
+}
