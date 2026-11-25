@@ -33,8 +33,12 @@ been invited. A new member sees nothing from before they joined.
 
 **Decided at first:** nobody can remove another member, not even the creator. Leaving was each member's own choice.
 
-**Proposed in ezp2p/puddle#69 (in review):** the creator, or whoever invited someone, can take them out at once, and
-anyone can vote someone out, who is removed once more than half of the other members have voted.
+**Then (ezp2p/puddle#69):** the creator, or whoever invited someone, can take them out at once, and
+anyone can vote someone out, who is removed once more than half of the other members have voted (2 of 3, 3 of 4 or 5). A vote stops counting if
+the voter leaves. Removed members can be invited back.
+
+**Why:** every Puddle must reach the same answer from the same events, so removals are checked against the
+invitation that brought the person in, and the creator, whom nobody invited, can only be voted out.
 
 ### What does blocking do in a group?
 

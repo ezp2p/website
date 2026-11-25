@@ -25,7 +25,8 @@ needs no open ports:
 sees, and it signs nothing in the Puddle's name. It sees what any carrier sees: who talks to the Puddle, when, how much,
 and which routes.
 
-One Levee serves one Puddle. It is a headless daemon with a config file and its own data folder; no database.
+One Levee serves one Puddle, and a Puddle has one Levee at most: neither side ever holds a second join. It is a
+headless daemon with a config file and its own data folder; no database.
 
 ## Identity
 
@@ -71,6 +72,10 @@ A joined Puddle publishes a new address record (part 03) whose `addresses` are t
 Its links (`puddle://`), phone pairing links (part 04) and first-contact answers carry the Levee's address. A Puddle that
 leaves its Levee publishes a record without `levee`, with its own address again (or a new Levee's).
 
+**Friends always go through the Levee.** A record with `levee` lists the Levee's address and no other, and a friend
+dials only the addresses of the newest record it holds: never an older, direct one, even if it still answers. There is
+one path, and the Puddle's home address stays its own.
+
 ## Talking to the Levee
 
 The Puddle's own requests to `/levee/v1/...` carry a request signature (part 02) for the Levee's id, but in the header
@@ -95,11 +100,16 @@ receipt).
 
 The Puddle tells the Levee who may reach it, and again whenever that changes:
 
-    POST /levee/v1/peers  (sealed) {"peers": [{"id": "...", "chain": [...]}, ...], "devices": [{"id": "...", "key": "<base64>"}, ...]}
+    POST /levee/v1/peers  (sealed) {"peers": [{"id": "...", "chain": [...], "addresses": ["..."],
+                                              "levee": {"id": "...", "key": "<base64>"}}, ...],
+                                   "devices": [{"id": "...", "key": "<base64>"}, ...]}
 
-`peers`: everyone with a stream the Puddle would take requests from; `devices`: its paired phones (part 04). The Levee
-is the owner's own, so it may know the owner's friends; it keeps the list in its data folder and never passes it on.
-Answered `204`.
+`peers`: everyone with a stream the Puddle would take requests from, with the addresses and Levee (if any) of the newest
+address record the Puddle holds from them; `devices`: its paired phones (part 04). The Levee is the owner's own, so it
+may know the owner's friends; it keeps the list in its data folder and never passes it on. Answered `204`.
+
+`addresses` and `levee` are for telling a sender the Levee gave up on their request (below), and for taking such a
+notice from a peer's Levee. A Levee that gets a `peers` list without them sends no notices and takes none.
 
 **While the Puddle is attached** (below), the request is handed over at
 once and the Levee waits up to 8 seconds for the Puddle's answer (less than a caller waits for any reply), which it passes back byte for byte: status, body and
@@ -132,6 +142,7 @@ or a one-way one the spool has no room for, is answered a plain `404`: not deliv
 | `POST /stream/v1/address`, `access`, `access/result`, `close`, `events`, `profile`, `group/invite` | `GET /stream/v1/identity`, `POST /stream/v1/access/status` |
 | `POST /stream/v1/files/{file}/request`, `granted`, `refused`, `done` | `GET /stream/v1/files/...`, `/stream/v1/media` |
 | `POST /stream/v1/call/end`, `call/group/leave` | the other `call/...` routes (a call needs both ends) |
+| `POST /stream/v1/undelivered` (below) | |
 | | everything under `/device/v1/` (a phone needs its Puddle) |
 
 ### Handing over: `inbox` and `answer`
@@ -157,6 +168,51 @@ keeps the nonces of what it spools until it is handed over.
 
 with the headers `X-Levee-Status: <status>`, and `X-Puddle-Receipt`, `Content-Type`, `Content-Range` as the Puddle would
 have answered, and the answer as the body. `204`, or `404` if no such live request is waiting any more.
+
+### When the Levee gives up
+
+Everything spooled is handed to the Puddle the next time it attaches, in the order it came. The Levee gives up on a
+spooled request only when the operator's limit runs out (`spool.keep_days`, 30 by default), or when the Puddle detaches.
+A custody receipt promised the sender delivery, so giving up is said out loud, to both ends. *(Decided with the owner
+2026-11-25; built: libpuddle-proto's `pp_undelivered_sign` and `pp_undelivered_verify`, vectors in `levee.json`.)*
+
+**The sender** is told, if it is in `peers` with `addresses`:
+
+    POST /stream/v1/undelivered  (sealed to the sender, part 09)
+
+    {"for": "<the Puddle's id>", "levee": "<levee id>",
+     "items": [{"nonce": "...", "sha256": "<hex>", "received": <ms>, "sig": "<base64>"}, ...]}
+
+Each `sig` is Ed25519 by the Levee's key over:
+
+    puddle-undelivered-v1
+    <the Puddle's id>
+    <the Levee's id>
+    <the request's nonce>
+    <hex SHA-256 of the request's body as sent>
+
+The text is the custody receipt's, under another label: the Levee takes back exactly what it took. The request is
+signed (part 02) by the Levee under its own id, for the sender's id: sealing needs a sender and a nonce, and the
+signature is how the sender's own Levee knows it is a peer's Levee. The sender takes the key from the custody receipts
+it holds from that Levee. Each item's `sig` is the proof that counts: the sender checks it against the key of the
+Levee whose custody receipt it holds for that nonce, and ignores items it holds no such receipt for. Answered `204`,
+with no receipt, whatever it named. The Levee sends it to the sender's newest address (`levee` set: that is the sender's own
+Levee, which takes it from a peer's Levee it knows of and spools it like any one-way request), retrying as an outbox
+would, and forgets a notice nobody took within `spool.keep_days`.
+
+For the sender, each good item turns "delivered" back into **not delivered**. Nothing retries on its own: the request
+is gone, and its signature would be stale anyway. Once the sender sees the recipient back (any request from them, or an
+answer from the Puddle itself), it may send the same content again as a new request. Address records, profiles and the
+like are sent again as they stand then; a message is the owner's to resend or to delete (Puddle's [`docs/levee.md`](/wiki/puddle/design/levee/)).
+
+**The Puddle** is told on its next attach, on `inbox`, one item per request given up:
+
+    {"n": .., "dropped": {"from": "<sender id>", "target": "/stream/v1/events", "received": <ms>, "nonce": "..."}}
+
+so it can tell its owner that something from a friend expired before it came back. It cannot say what: the Levee never
+held the content in the clear.
+
+A first contact (`*`) that is given up is not told: the asker has no stream yet, and finds out on `access/status`.
 
 ## Going out
 
@@ -236,14 +292,29 @@ HTTPS port the proxy forwards.
 
 In its data folder, as plain files: its key, the join (the Puddle's id and chain, the TURN credentials, the open token),
 the peers list, the spool (one file per request) and the files (one folder per file). Limits are the operator's, in its
-config: how much the spool may hold (1 GiB by default) and how long (30 days, then the oldest are dropped), the largest
-file and how long files are kept.
+config: how much the spool may hold (`spool.max_size`, 1 GiB by default; a full spool takes nothing new, a plain `404`)
+and how long (`spool.keep_days`, 30 by default, then the oldest are given up, as above), the largest file and how long
+files are kept. Notices of what it gave up are kept until delivered, for `spool.keep_days` at most.
 
 ## Not yet
 
 - **Holding what goes out.** A friend who is away and has no Levee is reached when the Puddle's outbox next tries,
   which needs the Puddle on. Holding it at the Levee would need requests that stay good for longer than five minutes.
-- **Several Levees** for one Puddle, and a Puddle reachable both directly and through its Levee: one address, the
-  Levee's, for now.
 - **Hiding routes from the Levee** (part 09, "Open decisions", 3).
 - **Voice over HTTPS** for networks that block UDP.
+
+## Settled with the owner
+
+The seven open questions of the first draft (Puddle's [`docs/levee.md`](/wiki/puddle/design/levee/)), and where each is answered:
+
+1. **Mailbox or live tunnel:** both. Passed straight through while the Puddle is attached, spooled while it is not
+   ("Coming in").
+2. **Certificate pinning:** gone. Part 09 made TLS transport only: who answers rests on request signatures, receipts and
+   sealing to the Puddle's key, so a Levee's certificate is checked by nothing.
+3. **Strangers and spam:** the Puddle tells its Levee its friends and phones (`peers`); anyone else is refused, except
+   first contacts, which are rate-limited and held apart ("Coming in").
+4. **Who runs it:** the Puddle's owner, one Levee for one Puddle, joined by a one-time link ("Joining").
+5. **How long it holds things:** until the Puddle attaches, up to the operator's limits (1 GiB, 30 days). What it gives
+   up on, it tells both the sender and the Puddle ("When the Levee gives up").
+6. **Several Levees:** no. One Puddle, one Levee, both ways; nothing gained by a spare was worth the complexity.
+7. **Direct and Levee together:** always the Levee ("The Puddle's address").
