@@ -9,7 +9,9 @@ image_alt: Several seeders joined to each other, each with Puddles of its own, w
 
 # Pools <span class="status">In development</span>
 
-<p class="lede">A community with no server: its members' Puddles hold it between them.</p>
+<p class="lede">
+    A true Peer-to-Peer Community Server
+</p>
 
 > **Pools are in development.** Nothing here can be installed or tried yet, and the details below may change as the
 > design settles. Follow along on the [roadmap]({{ '/features/' | relative_url }}#pools) and in
@@ -41,12 +43,14 @@ Pools are built into Puddle itself. There's no separate program to install.
 ## Pool or Pond?
 
 |                     | Pond                               | Pool                                   |
-|---------------------|------------------------------------|----------------------------------------|
+|----------------------|-------------------------------------|----------------------------------------|
 | Who runs it         | Someone, on a server of their own  | Nobody: its members' Puddles           |
 | Where history lives | On the Pond                        | Shared between seeders                 |
 | Who is in charge    | The Pond's admin, with `pondctl`   | Its Auth Puddles                       |
 | Voice               | Voice channels                     | A mesh, about 8 people per channel     |
 | Status              | Ready to test                      | In development                         |
+| Shops               | Supported                          | Not Supported/really possible          |
+
 
 ## Not yet decided
 
